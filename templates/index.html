@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timetable Generator</title>
+    <style>
+        body {
+            background-color: #F5E8C7; /* Beige background */
+            color: #8B4513; /* Brownish text */
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background-color: #DED0B6; /* Slightly darker beige for contrast */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        label {
+            font-size: 18px;
+            margin-right: 10px;
+        }
+        select, input[type="number"] {
+            padding: 8px;
+            font-size: 16px;
+            border: 2px solid #8B4513;
+            border-radius: 5px;
+            background-color: #FFF8E8; /* Light beige input background */
+            color: #8B4513;
+            margin: 10px 0;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #8B4513;
+            color: #F5E8C7;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        input[type="submit"]:hover {
+            background-color: #A0522D; /* Slightly lighter brown on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Select Department and Semester</h1>
+        <form method="POST" action="/">
+            <label for="department">Department:</label>
+            <select name="department" id="department">
+                {% for i in range(1, depts|length + 1) %}
+                    <option value="{{ i }}">{{ depts[i-1] }}</option>
+                {% endfor %}
+            </select><br><br>
+
+            <label for="semester">Semester:</label>
+            <input type="number" name="semester" id="semester" min="1" max="8" required><br><br>
+
+            <input type="submit" value="Generate Timetable">
+        </form>
+    </div>
+</body>
+</html>
